@@ -58,6 +58,12 @@ namespace NetCoreServer
                 return;
             }
 
+            if (path.Equals(new PathString("/trailers.ashx")))
+            {
+                await TrailerHandler.InvokeAsync(context);
+                return;
+            }
+
             if (path.Equals(new PathString("/version")))
             {
                 await VersionHandler.InvokeAsync(context);
