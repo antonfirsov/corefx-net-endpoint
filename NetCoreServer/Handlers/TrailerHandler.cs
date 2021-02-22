@@ -18,7 +18,6 @@ namespace NetCoreServer
                 return;
             }
 
-            context.Response.Headers.Add("Transfer-Encoding", "chunked");
             context.Response.Headers.Add("Connection", "close");
 
             context.Response.DeclareTrailer("MyCoolTrailerHeader");
@@ -26,7 +25,7 @@ namespace NetCoreServer
             context.Response.DeclareTrailer("Accept-Encoding");
             context.Response.DeclareTrailer("Hello");
 
-            await context.Response.Body.WriteAsync(Encoding.ASCII.GetBytes("4\r\ndata\r\n0\r\n"));
+            await context.Response.Body.WriteAsync(Encoding.ASCII.GetBytes("data"));
 
             context.Response.AppendTrailer("MyCoolTrailerHeader", "amazingtrailer");
             context.Response.AppendTrailer("EmptyHeader", "");
